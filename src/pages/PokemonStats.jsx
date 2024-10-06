@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 
+// traduccion al español de los tipos de pokemones
 const typeTranslations = {
   normal: { name: 'Normal', color: '#A8A77A' },
   fighting: { name: 'Lucha', color: '#C22E28' },
@@ -19,8 +20,8 @@ const typeTranslations = {
   psychic: { name: 'Psíquico', color: '#F95587' },
   ice: { name: 'Hielo', color: '#96D9D6' },
   dragon: { name: 'Dragón', color: '#6F35FC' },
-  dark: { name: 'Siniestro', color: '#705746' },
   fairy: { name: 'Hada', color: '#D685AD' },
+  dark: { name: 'Siniestro', color: '#705746' },
   unknown: { name: 'Desconocido', color: '#A8A77A' },
   shadow: { name: 'Sombra', color: '#000000' },
 };
@@ -31,6 +32,7 @@ const PokemonStats = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // llamada a la api
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -55,6 +57,7 @@ const PokemonStats = ({ route }) => {
     return <Text style={styles.error}>{error}</Text>;
   }
 
+  // preguntamos si hay imagen en caso que no nis devuelve null
   const pokemonImage = stats.sprites ? stats.sprites.front_default : null;
 
   return (
@@ -77,6 +80,7 @@ const PokemonStats = ({ route }) => {
         })}
       </View>
 
+        {/* mostramos las estadisticas de los pokemones */}
       <Text style={styles.statTitle}>Estadísticas:</Text>
       <View style={styles.statsContainer}>
         {Array.isArray(stats.stats) ? stats.stats.map((stat, index) => (
